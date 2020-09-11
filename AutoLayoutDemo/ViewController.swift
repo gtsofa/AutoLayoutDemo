@@ -9,49 +9,49 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let bearImageView: UIImageView = {
-        let topImage = UIImageView(image: #imageLiteral(resourceName: "bear"))
-        topImage.translatesAutoresizingMaskIntoConstraints = false
-        
-        return topImage
-    }()
     
-    let textDesc: UITextView = {
-        
-        let title = UITextView()
-        title.text = "Join us today in our fun and games!"
-        title.isEditable = false
-        title.font = UIFont.boldSystemFont(ofSize: 18)
-        title.translatesAutoresizingMaskIntoConstraints = false
-        return title
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.text = "Mobile Verification"
+        label.textColor = .orange
+        label.translatesAutoresizingMaskIntoConstraints = false
+        //label.backgroundColor = .red
+        return label
     }()
-    let desc: UITextView = {
-        
-        let description = UITextView()
-        description.text = "Are you ready for loads and loads of fun? Don't wait any longer! We hope to see you soon"
-        description.translatesAutoresizingMaskIntoConstraints = false
-        return description
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        //label.textAlignment = .center
+        label.text = "We have sent an OTP Code to your mobile for verification. Please enter the code in the space below."
+        label.numberOfLines = 3
+        //label.lineBreakMode = .byWordWrapping
+        label.font = .systemFont(ofSize: 10)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
-        view.addSubview(bearImageView)
-        bearImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        bearImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-        view.addSubview(textDesc)
-        //textDesc.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        textDesc.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50).isActive = true
-        textDesc.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        textDesc.topAnchor.constraint(equalTo: bearImageView.bottomAnchor, constant: 50).isActive = true
-        textDesc.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        //constraints
+        view.addSubview(titleLabel)
+        view.addSubview(descriptionLabel)
+        
+        NSLayoutConstraint.activate([
+            // Place the button at the center of its parent
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 80),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),//left-padding
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),//right-padding
+            
+        ])
         
         
-        
-        
-        
+    
     }
+    
 
 
 }
